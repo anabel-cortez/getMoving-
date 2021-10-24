@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+//import alarm.mp3 from ".src/alarm.mp3";
+
 export default class AlarmClock extends React.Component {
   constructor() {
     super();
@@ -8,9 +10,11 @@ export default class AlarmClock extends React.Component {
       play: false,
     };
     this.setAlarmTime = this.setAlarmTime.bind(this);
+    this.audio = new Audio("../alarm.mp3");
+    this.audio.play();
   }
 
-  audio = new Audio("../not-kidding-243.ogg");
+  // audio = new Audio("../alarm.mp3");
 
   componentDidMount() {
     this.clock = setInterval(() => this.setCurrentTime(), 1000);
@@ -38,11 +42,12 @@ export default class AlarmClock extends React.Component {
 
   checkAlarmClock() {
     if (this.state.alarmTime == "undefined" || !this.state.alarmTime) {
-      this.alarmMessage = "Please set your alarm.";
+      this.alarmMessage = "Set your alarm.";
     } else {
       this.alarmMessage = "Your alarm is set for " + this.state.alarmTime + ".";
       if (this.state.currentTime === this.state.alarmTime) {
-        alert("its time!");
+        // alert("TIME");
+        this.audio.play();
       } else {
         console.log("not yet");
       }
@@ -52,7 +57,7 @@ export default class AlarmClock extends React.Component {
   render() {
     return (
       <div>
-        <h1>React Alarm Clock</h1>
+        <h1>Get Moving</h1>
         <h2>It is {this.state.currentTime}.</h2>
         <h2>{this.alarmMessage}</h2>
         <form>
