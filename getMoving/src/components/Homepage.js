@@ -10,7 +10,7 @@ export default class AlarmClock extends React.Component {
     this.setAlarmTime = this.setAlarmTime.bind(this);
   }
 
-  //audio = new Audio(this.props.not-kidding-243.ogg);
+  audio = new Audio("../not-kidding-243.ogg");
 
   componentDidMount() {
     this.clock = setInterval(() => this.setCurrentTime(), 1000);
