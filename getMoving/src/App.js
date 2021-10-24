@@ -1,31 +1,7 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           hello world
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-import React from 'react';
-import { useTimer } from 'react-timer-hook';
+import React from "react";
+import { useTimer } from "react-timer-hook";
+import Homepage from "./components/Homepage";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function MyTimer({ expiryTimestamp }) {
   const {
@@ -38,27 +14,22 @@ function MyTimer({ expiryTimestamp }) {
     pause,
     resume,
     restart,
-  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called') });
-
+  } = useTimer({
+    expiryTimestamp,
+    onExpire: () => console.warn("onExpire called"),
+  });
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <h1>Get Moving </h1>
-      <p>Timer</p>
-      <div style={{fontSize: '100px'}}>
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
-      </div>
-      <p>{isRunning ? 'Running' : 'Not running'}</p>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={resume}>Resume</button>
-      <button onClick={() => {
-        // Restarts to 5 minutes timer
-        const time = new Date();
-        time.setSeconds(time.getSeconds() + 300);
-        restart(time)
-      }}>Restart</button>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/timer">
+          <p>This is timer (replace with an component :))</p>
+        </Route>
+        <Route path="/">
+          <Homepage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
@@ -71,3 +42,17 @@ export default function App() {
     </div>
   );
 }
+
+//import React from 'react';
+// import AlarmClock from "react-native-alarm-clock";
+
+// // ...
+
+// // Create an alarm at 1:55PM for next day, with the label 'My Custom Alarm'
+// let date = new Date();
+// date.setDate(date.getDate() + 1);
+// date.setHours(13, 55);
+
+// AlarmClock.createAlarm(date.toISOString(), 'My Custom Alarm');
+
+// export default function App();
